@@ -1,0 +1,30 @@
+package com.example.demo.validator;
+
+import javax.validation.Constraint;
+import javax.validation.constraints.NotNull;
+import java.lang.annotation.*;
+
+import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
+
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+@Retention(RUNTIME)
+@Documented
+@Constraint(validatedBy = IsMobileValidator.class )
+public @interface IsMobile {
+
+    boolean required() default true;
+
+    String message() default "手机号码格式不正确";
+
+    Class<?>[] groups() default { };
+
+    Class<? extends Payload>[] payload() default { };
+}
+
